@@ -33,7 +33,7 @@ const pushMeToken = process.env.PUSH_ME_TOKEN || '';
 
 const puppeteer = require('puppeteer');
 (async () => {
-  const browser = await puppeteer.launch({devtools: true, headless: false});
+  const browser = await puppeteer.launch({devtools: false, headless: true});
 
   const page = await browser.newPage()
   await page.setViewport({width: 1440, height: 789});
@@ -54,7 +54,7 @@ const puppeteer = require('puppeteer');
   await popup.waitForSelector('#username-email')
 
   // wpisujemy dane
-  await popup.type('#username-email', login);
+  await popup.type('#username-email', login.toString());
   await popup.type('#password', password);
   popup.waitFor(2000);
 
